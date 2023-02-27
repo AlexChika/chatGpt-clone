@@ -1,9 +1,9 @@
 import { Configuration, OpenAIApi } from "openai";
 
-const config = new Configuration({
-  apiKey: process.env.CHAT_GPT_API_KEY,
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(configuration);
 
 export default openai;

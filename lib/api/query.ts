@@ -1,6 +1,6 @@
 import openai from "./chatGPT";
 
-async function query(prompt: string, chatId: string, model: string) {
+async function query(prompt: string, model: string) {
   const res = await openai
     .createCompletion({
       model,
@@ -12,7 +12,8 @@ async function query(prompt: string, chatId: string, model: string) {
     })
     .then((res) => res.data.choices[0].text)
     .catch((err) => {
-      `ChatGpt is having trouble finding your answers Error: ${err.message}`;
+      console.log(err.message, "at query");
+      return `ChatGpt is having trouble finding your answers Error: ${err.message}`;
     });
 
   return res;

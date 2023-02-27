@@ -15,7 +15,7 @@ const ChatInput = ({ chatId }: Props) => {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
 
-  const model = "text-davinci-803";
+  const model = "text-davinci-003";
 
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
@@ -34,12 +34,12 @@ const ChatInput = ({ chatId }: Props) => {
       },
     };
 
-    await addMessage(session?.user?.email!, chatId, message);
-
     let notification: string;
 
     try {
       notification = toast.loading("ChatGPT is gathering resources...");
+
+      await addMessage(session?.user?.email!, chatId, message);
 
       await fetch("/api/askQuestion", {
         method: "POST",
