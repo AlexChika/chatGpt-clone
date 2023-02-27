@@ -1,15 +1,17 @@
 "use client";
 
+import { orderBy, query } from "firebase/firestore";
 import { signOut, useSession } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { getChatRef } from "../firebase";
+import { getChatRef } from "../../firebase";
 import ChatRow from "./ChatRow";
 import NewChat from "./NewChat";
 
 const SideBar = ({ showModal }: { showModal: boolean }) => {
   const { data: session } = useSession();
   const [chats, loading, error] = useCollection(
-    session && getChatRef(session.user?.email!)
+    session &&
+      query(getChatRef(session.user?.email!), orderBy("createdAt", "desc"))
   );
 
   console.log(chats);

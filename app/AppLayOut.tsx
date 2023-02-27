@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import React from "react";
-import SideBar from "../components/SideBar";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
+import SideBar from "../components/sidebar/SideBar";
 
 const AppLayOut = ({ children }: { children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex bg-primary">
+    <div className="flex bg-primary mx-auto max-w-screen-2xl">
       <SideBar showModal={showModal} />
 
       <main className="relative flex-1">
@@ -17,7 +17,7 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
         {/* float button */}
         <button
           onClick={() => setShowModal(!showModal)}
-          className={`absolute text-white top-[20px] md:hidden ${
+          className={`absolute z-10 text-white top-[20px] md:hidden ${
             showModal ? "left-[250px]" : "left-[20px]"
           }`}
         >
