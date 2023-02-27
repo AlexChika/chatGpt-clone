@@ -1,7 +1,7 @@
 import { PlusIcon } from "@heroicons/react/24/solid";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { addChat } from "../../firebase";
+import { addChat } from "../../lib/firebase";
 
 const NewChat = () => {
   const { data } = useSession();

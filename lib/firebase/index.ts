@@ -22,7 +22,6 @@ function getChatRef(email: string) {
 function getChatDocRef(email: string, id: string) {
   return doc(db, `users/${email}/chats/${id}`);
 }
-
 function getMessageRef(email: string, id: string) {
   return collection(db, `users/${email}/chats/${id}/messages`);
 }
@@ -35,10 +34,14 @@ async function addChat(email: string) {
 
   return doc;
 }
-
 async function removeChatDoc(email: string, id: string) {
   await deleteDoc(getChatDocRef(email, id));
 }
 
+async function addMessage(email: string, id: string, message: Message) {
+  const doc = await addDoc(getMessageRef(email, id), message);
+  return doc;
+}
+
 export default db;
-export { addChat, getChatRef, getMessageRef, removeChatDoc };
+export { addChat, getChatRef, getMessageRef, removeChatDoc, addMessage };

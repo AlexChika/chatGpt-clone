@@ -3,7 +3,7 @@
 import { orderBy, query } from "firebase/firestore";
 import { signOut, useSession } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { getChatRef } from "../../firebase";
+import { getChatRef } from "../../lib/firebase";
 import ChatRow from "./ChatRow";
 import NewChat from "./NewChat";
 

@@ -3,6 +3,7 @@ import { useState } from "react";
 import React from "react";
 import { Bars3CenterLeftIcon } from "@heroicons/react/24/solid";
 import SideBar from "../components/sidebar/SideBar";
+import { Toaster } from "react-hot-toast";
 
 const AppLayOut = ({ children }: { children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(false);
@@ -12,6 +13,8 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
       <SideBar showModal={showModal} />
 
       <main className="relative flex-1">
+        <Toaster position="top-right" />
+
         {children}
 
         {/* float button */}
