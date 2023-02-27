@@ -20,11 +20,11 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
         {/* float button */}
         <button
           onClick={() => setShowModal(!showModal)}
-          className={`absolute z-10 text-white top-[20px] md:hidden ${
+          className={`absolute z-10 text-white top-[12px] md:hidden ${
             showModal ? "left-[250px]" : "left-[20px]"
           }`}
         >
-          <Bars3CenterLeftIcon className="h-9 w-9 animate-bounce pointer-events-none" />
+          <Bars3CenterLeftIcon className="h-9 w-9 pointer-events-none" />
         </button>
       </main>
     </div>

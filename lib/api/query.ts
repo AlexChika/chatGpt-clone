@@ -9,6 +9,7 @@ async function query(prompt: string, model: string) {
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
+      max_tokens: 2048,
     })
     .then((res) => res.data.choices[0].text)
     .catch((err) => {

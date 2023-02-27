@@ -41,6 +41,8 @@ const ChatInput = ({ chatId }: Props) => {
 
       await addMessage(session?.user?.email!, chatId, message);
 
+      setPrompt("");
+
       await fetch("/api/askQuestion", {
         method: "POST",
         headers: {
