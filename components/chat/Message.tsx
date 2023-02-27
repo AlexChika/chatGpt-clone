@@ -5,6 +5,9 @@ import { ChatGptIcon } from "../../lib/icons";
 const Message = ({ message }: { message: DocumentData }) => {
   const isChatGpt = message.user.avatar === "ChatGptIcon";
 
+  console.log(message.text.split("\n").length);
+  console.log(message.text);
+
   return (
     <div className={`py-5 text-white ${isChatGpt && "bg-[#434654]"}`}>
       <div className="flex px-5 sm:px-10 space-x-5 max-w-2xl mx-auto">
@@ -20,7 +23,15 @@ const Message = ({ message }: { message: DocumentData }) => {
           />
         )}
 
-        <p className="pt-1 text-sm">{message.text}</p>
+        {isChatGpt ? (
+          message.text
+            .split("\n")
+            .map((text: string) => (
+              <p className="pt-1 text-sm message">{text}</p>
+            ))
+        ) : (
+          <p className="pt-1 text-sm message">{message.text}</p>
+        )}
       </div>
     </div>
   );
