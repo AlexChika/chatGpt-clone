@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import React, { FormEvent, useState } from "react";
 import { addMessage } from "../../lib/firebase";
 import toast from "react-hot-toast";
+import query from "../../lib/api/query";
 
 type Props = {
   chatId: string;
@@ -42,7 +43,8 @@ const ChatInput = ({ chatId }: Props) => {
       await addMessage(session?.user?.email!, chatId, userMessage);
 
       setPrompt("");
-
+      /*
+    //   ASSUMING WE WERE USING THE ASK QUSTION API ROUTTE
       const response = await fetch("/api/askQuestion", {
         method: "POST",
         headers: {
@@ -55,11 +57,13 @@ const ChatInput = ({ chatId }: Props) => {
           session,
         }),
       });
+     const data = await response.json();
+     const text = data.answer
+       */
 
-      const data = await response.json();
-
+      const text = await query(input, model);
       const gptMessage: Message = {
-        text: data.answer,
+        text: text!,
         createdAt: serverTimestamp(),
         user: {
           _id: "ChatGPT",

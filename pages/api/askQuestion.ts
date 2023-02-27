@@ -4,7 +4,7 @@ import query from "../../lib/api/query";
 import { adminDb } from "../../lib/firebase/firebase-admin";
 
 type Data = {
-  answer: string | undefined;
+  answer: string;
 };
 
 export default async function handler(
@@ -23,11 +23,8 @@ export default async function handler(
 
   const response = await query(prompt, model);
 
-  res.status(200).json({ answer: response });
-
-  /*
-// USING FIREBASE ADMIN
-I couldn't use the firebase admin to set the new message because the edge function times out at 10 sec
+  // USING FIREBASE ADMIN
+  // I couldn't use the firebase admin to set the new message because the edge function times out at 10 sec
 
   const message: Message = {
     text: response!,
@@ -39,17 +36,16 @@ I couldn't use the firebase admin to set the new message because the edge functi
     },
   };
 
-try {
-  await adminDb
-    .collection("users") //user base collection
-    .doc(session?.user?.email!)
-    .collection("chats")
-    .doc(chatId)
-    .collection("messages")
-    .add(message);
-  res.status(200).json({ answer: message.text });
-} catch (error) {
-  res.status(500).json({ answer: "Firebase Error" });
-}
-*/
+  try {
+    await adminDb
+      .collection("users") //user base collection
+      .doc(session?.user?.email!)
+      .collection("chats")
+      .doc(chatId)
+      .collection("messages")
+      .add(message);
+    res.status(200).json({ answer: message.text });
+  } catch (error) {
+    res.status(500).json({ answer: "Firebase Error" });
+  }
 }
