@@ -5,6 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { getChatRef } from "../../lib/firebase";
 import ChatRow from "./ChatRow";
+import ModelSelection from "./ModelSelection";
 import NewChat from "./NewChat";
 
 const SideBar = ({ showModal }: { showModal: boolean }) => {
@@ -13,8 +14,6 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
     session &&
       query(getChatRef(session.user?.email!), orderBy("createdAt", "desc"))
   );
-
-  console.log(chats);
 
   return (
     <nav
@@ -27,12 +26,22 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
           {/* new chat */}
           <NewChat />
 
-          <div>{/* module selection */}</div>
+          <div>
+            <ModelSelection />
+          </div>
 
           {/* map through Chart rows*/}
-          {chats?.docs.map((chat) => {
-            return <ChatRow key={chat.id} id={chat.id} />;
-          })}
+          <div className="flex flex-col space-y-2 my-2">
+            {loading && (
+              <div className="animate-pulse text-center text-white">
+                <p>Loading chats</p>
+              </div>
+            )}
+
+            {chats?.docs.map((chat) => {
+              return <ChatRow key={chat.id} id={chat.id} />;
+            })}
+          </div>
         </div>
       </div>
 

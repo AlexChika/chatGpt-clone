@@ -1,13 +1,26 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
+import openai from "../../lib/api/chatGPT";
 
-type Data = {
-  name: string;
+type Option = {
+  value: string;
+  label: string;
 };
 
-export default function handler(
+type Data = {
+  modelOptions: Option[];
+};
+
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: "John Doe" });
+  const models = await openai.listModels().then((res) => res.data.data);
+
+  const modelOptions = models.map((model) => ({
+    value: model.id,
+    label: model.id,
+  }));
+
+  res.status(200).json({ modelOptions });
 }

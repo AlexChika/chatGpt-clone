@@ -1,5 +1,6 @@
 "use client";
 
+import useSWR from "swr";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
@@ -15,8 +16,11 @@ type Props = {
 const ChatInput = ({ chatId }: Props) => {
   const [prompt, setPrompt] = useState("");
   const { data: session } = useSession();
+  const { data: model, mutate: setModel } = useSWR("model", {
+    fallbackData: "text-davinci-003",
+  });
 
-  const model = "text-davinci-003";
+  //   const model = "text-davinci-003";
 
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
