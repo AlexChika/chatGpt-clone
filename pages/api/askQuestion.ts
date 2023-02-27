@@ -4,7 +4,7 @@ import query from "../../lib/api/query";
 import { adminDb } from "../../lib/firebase/firebase-admin";
 
 type Data = {
-  answer: string;
+  answer: string | undefined;
 };
 
 export default async function handler(
@@ -23,6 +23,12 @@ export default async function handler(
 
   const response = await query(prompt, model);
 
+  res.status(200).json({ answer: response });
+
+  /*
+// USING FIREBASE ADMIN
+I couldn't use the firebase admin to set the new message because the edge function times out at 10 sec
+
   const message: Message = {
     text: response!,
     createdAt: admin.firestore.Timestamp.now(),
@@ -33,16 +39,17 @@ export default async function handler(
     },
   };
 
-  try {
-    await adminDb
-      .collection("users") //user base collection
-      .doc(session?.user?.email!)
-      .collection("chats")
-      .doc(chatId)
-      .collection("messages")
-      .add(message);
-    res.status(200).json({ answer: message.text });
-  } catch (error) {
-    res.status(500).json({ answer: "Firebase Error" });
-  }
+try {
+  await adminDb
+    .collection("users") //user base collection
+    .doc(session?.user?.email!)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
+  res.status(200).json({ answer: message.text });
+} catch (error) {
+  res.status(500).json({ answer: "Firebase Error" });
+}
+*/
 }

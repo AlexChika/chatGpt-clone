@@ -22,7 +22,7 @@ const ChatInput = ({ chatId }: Props) => {
     const input = prompt.trim();
     if (!input) return;
 
-    const message: Message = {
+    const userMessage: Message = {
       text: input,
       createdAt: serverTimestamp(),
       user: {
@@ -39,11 +39,11 @@ const ChatInput = ({ chatId }: Props) => {
     try {
       notification = toast.loading("ChatGPT is gathering resources...");
 
-      await addMessage(session?.user?.email!, chatId, message);
+      await addMessage(session?.user?.email!, chatId, userMessage);
 
       setPrompt("");
 
-      await fetch("/api/askQuestion", {
+      const response = await fetch("/api/askQuestion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +55,20 @@ const ChatInput = ({ chatId }: Props) => {
           session,
         }),
       });
+
+      const data = await response.json();
+
+      const gptMessage: Message = {
+        text: data.answer,
+        createdAt: serverTimestamp(),
+        user: {
+          _id: "ChatGPT",
+          name: "ChatGPT",
+          avatar: "ChatGptIcon",
+        },
+      };
+
+      await addMessage(session?.user?.email!, chatId, gptMessage);
 
       toast.success("ChatGPT just responded", {
         id: notification!,
