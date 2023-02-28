@@ -50,7 +50,7 @@ const ChatPage = ({ chatId }: Props) => {
   return (
     <div
       ref={chatPageRef}
-      className="h-[calc(100vh-76px)] overflow-y-auto hide__scroll__bar red"
+      className="h-[calc(100vh-76px)] overflow-y-auto hide__scroll__bar"
     >
       {messages?.empty && (
         <>
