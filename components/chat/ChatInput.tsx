@@ -92,7 +92,7 @@ const ChatInput = ({ chatId }: Props) => {
       formInputRef.current.scrollIntoView({
         behavior: "smooth",
         inline: "nearest",
-        block: "start",
+        block: "end",
       });
     }
   }, [formInputRef.current]);

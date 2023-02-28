@@ -42,7 +42,7 @@ const Message = ({ message, last }: Props) => {
       textBoxRef.current.scrollIntoView({
         behavior: "smooth",
         inline: "nearest",
-        block: "end",
+        block: "start",
       });
     }
   }, [_message, last]);
