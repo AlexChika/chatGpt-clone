@@ -10,6 +10,7 @@ import Message from "./Message";
 type Props = {
   chatId: string;
 };
+
 const ChatPage = ({ chatId }: Props) => {
   const { data: session } = useSession();
   const [messages, loading, error] = useCollection(
@@ -18,6 +19,22 @@ const ChatPage = ({ chatId }: Props) => {
       orderBy("createdAt", "asc")
     )
   );
+
+  function isMessageNew(time: any) {
+    let isNew = true;
+
+    if (time === null) {
+      return isNew;
+    }
+
+    const _time = new Date(time.toDate()).getTime();
+    const currentTime = new Date().getTime();
+    const remainingTime = currentTime - _time;
+
+    isNew = remainingTime < 10_000 ? true : false;
+
+    return isNew;
+  }
 
   return (
     <div className="flex-1 overflow-y-auto hide__scroll__bar pb-32">
@@ -30,8 +47,18 @@ const ChatPage = ({ chatId }: Props) => {
         </>
       )}
 
-      {messages?.docs.map((message) => {
-        return <Message key={message.id} message={message.data()} />;
+      {messages?.docs.map((message, index) => {
+        return (
+          <Message
+            key={message.id}
+            message={message.data()}
+            last={
+              index + 1 === messages.docs.length &&
+              message.data().user.avatar === "ChatGptIcon" &&
+              isMessageNew(message.data().createdAt)
+            }
+          />
+        );
       })}
     </div>
   );

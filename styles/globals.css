@@ -38,3 +38,20 @@
     display: none;
   }
 }
+
+.blink {
+  width: 3px;
+  display: inline-block;
+  animation: blink 1s infinite;
+  background-color: rgb(156 163 175);
+}
+
+@keyframes blink {
+  49% {
+    background-color: rgb(156 163 175);
+  }
+  50%,
+  99% {
+    background-color: transparent;
+  }
+}

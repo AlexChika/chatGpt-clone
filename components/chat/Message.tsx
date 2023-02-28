@@ -1,11 +1,39 @@
 import { DocumentData } from "firebase/firestore";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChatGptIcon } from "../../lib/icons";
 
-const Message = ({ message }: { message: DocumentData }) => {
+type Props = {
+  message: DocumentData;
+  last: boolean;
+};
+
+const Message = ({ message, last }: Props) => {
   const isChatGpt = message.user.avatar === "ChatGptIcon";
 
-  console.log(message.text.split("\n"));
+  const [_message, setMessage] = useState("");
+
+  useEffect(() => {
+    if (!last) return;
+
+    let text = message.text;
+
+    function typeWriter() {
+      let i = 0;
+      let message = _message;
+
+      function typing() {
+        if (i < text.length) {
+          setMessage((message += text.charAt(i)));
+          i++;
+          setTimeout(typing, 100);
+        }
+      }
+
+      typing();
+    }
+
+    typeWriter();
+  }, [last]);
 
   return (
     <div className={`py-5 text-white ${isChatGpt && "bg-[#434654]"}`}>
@@ -26,17 +54,37 @@ const Message = ({ message }: { message: DocumentData }) => {
           </>
         )}
 
-        <span>
-          {message.text.split("\n").map((text: string, index: number) =>
-            text ? (
-              <p key={index} className="pb-3 text-sm message">
-                {text}
-              </p>
-            ) : (
-              <></>
-            )
-          )}
-        </span>
+        {!last && (
+          <span>
+            {message.text.split("\n").map((text: string, index: number) =>
+              text ? (
+                <p key={index} className="pb-3 text-sm message">
+                  {text}
+                </p>
+              ) : (
+                <></>
+              )
+            )}
+          </span>
+        )}
+
+        {last && (
+          <span>
+            {_message.split("\n").map((text: string, index: number) =>
+              text ? (
+                <p key={index} className="pb-3 text-sm message">
+                  {text}
+
+                  {_message.split("\n").length === index + 1 && (
+                    <span className="h-5 blink w-5 bg-gray-400 translate-y-[3px]"></span>
+                  )}
+                </p>
+              ) : (
+                <></>
+              )
+            )}
+          </span>
+        )}
       </div>
     </div>
   );

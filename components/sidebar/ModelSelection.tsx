@@ -9,8 +9,6 @@ const ModelSelection = () => {
     fallbackData: "text-davinci-003",
   });
 
-  console.log(models);
-
   return (
     <div className="mt-2">
       <Select
