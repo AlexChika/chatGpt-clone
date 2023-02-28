@@ -12,19 +12,26 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
     <div className="flex bg-primary mx-auto max-w-screen-2xl">
       <SideBar showModal={showModal} />
 
-      <main className="relative flex-1">
+      <main
+        onClick={(e: any) => {
+          if (e.target?.dataset?.role === "nav_button") return;
+          setShowModal(false);
+        }}
+        className="relative flex-1"
+      >
         <Toaster position="top-right" />
 
         {children}
 
         {/* float button */}
         <button
+          data-role="nav_button"
           onClick={() => setShowModal(!showModal)}
-          className={`absolute z-10 text-white top-[12px] md:hidden ${
+          className={`fixed z-20 text-white top-[12px] md:hidden pointer_none ${
             showModal ? "left-[250px]" : "left-[20px]"
           }`}
         >
-          <Bars3CenterLeftIcon className="h-9 w-9 pointer-events-none" />
+          <Bars3CenterLeftIcon className="h-9 w-9" />
         </button>
       </main>
     </div>

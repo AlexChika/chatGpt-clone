@@ -45,6 +45,10 @@
   }
 }
 
+.pointer_none * {
+  pointer-events: none;
+}
+
 .blink {
   width: 3px;
   display: inline-block;
