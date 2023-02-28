@@ -87,7 +87,7 @@ const ChatInput = ({ chatId }: Props) => {
   }
 
   return (
-    <div className="relative bottom-0 left-0 right-0 text-gray-400 text-sm py-5 flex items-center justify-center h-20">
+    <div className="relative text-gray-400 text-sm py-5 flex items-center justify-center h-20">
       <form
         onSubmit={sendMessage}
         className="bg-gray-700/50 border border-gray-700/50 px-5 py-2 space-x-5 flex rounded w-[95%] sm:w-[80%] min-w-[300px] mx-auto z-50 absolute "
@@ -108,10 +108,10 @@ const ChatInput = ({ chatId }: Props) => {
           <PaperAirplaneIcon className="h-4 w-4 rotate-45" />
         </button>
       </form>
-
-      <div className="absolute h-20 bottom-0 left-0 right-0 bg-primary box_shadow"></div>
     </div>
   );
 };
 
 export default ChatInput;
+
+// <div className="absolute h-20 bottom-0 left-0 right-0 bg-primary box_shadow"></div>;
