@@ -64,6 +64,7 @@ const ChatPage = ({ chatId }: Props) => {
           <Message
             key={message.id}
             message={message.data()}
+            chatRef={chatPageRef}
             last={
               index + 1 === messages.docs.length &&
               message.data().user.avatar === "ChatGptIcon" &&

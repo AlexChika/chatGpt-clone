@@ -1,13 +1,14 @@
 import { DocumentData } from "firebase/firestore";
-import React, { useEffect, useRef, useState } from "react";
+import React, { MutableRefObject, useEffect, useRef, useState } from "react";
 import { ChatGptIcon } from "../../lib/icons";
 
 type Props = {
   message: DocumentData;
   last: boolean;
+  chatRef: MutableRefObject<HTMLDivElement | null>;
 };
 
-const Message = ({ message, last }: Props) => {
+const Message = ({ message, last, chatRef }: Props) => {
   const isChatGpt = message.user.avatar === "ChatGptIcon";
 
   const textBoxRef = useRef<null | HTMLDivElement>(null);
@@ -39,11 +40,9 @@ const Message = ({ message, last }: Props) => {
   useEffect(() => {
     if (!last) return;
     if (textBoxRef.current) {
-      textBoxRef.current.scrollIntoView({
-        behavior: "smooth",
-        inline: "nearest",
-        block: "end",
-      });
+      if (chatRef.current) {
+        chatRef.current.scrollTo(0, Number(chatRef.current.scrollHeight));
+      }
     }
   }, [_message, last]);
 
