@@ -3,6 +3,7 @@
 import { ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import { orderBy, query } from "firebase/firestore";
 import { useSession } from "next-auth/react";
+import { useEffect, useRef } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { getMessageRef } from "../../lib/firebase";
 import Message from "./Message";
@@ -20,6 +21,8 @@ const ChatPage = ({ chatId }: Props) => {
     )
   );
 
+  const chatPageRef = useRef<null | HTMLDivElement>(null);
+
   function isMessageNew(time: any) {
     let isNew = true;
 
@@ -36,8 +39,17 @@ const ChatPage = ({ chatId }: Props) => {
     return isNew;
   }
 
+  useEffect(() => {
+    if (chatPageRef.current) {
+      chatPageRef.current.scrollTo(0, Number(chatPageRef.current.scrollHeight));
+    }
+  }, [messages]);
+
   return (
-    <div className="flex-1 overflow-y-auto hide__scroll__bar pb-32">
+    <div
+      ref={chatPageRef}
+      className="flex-1 overflow-y-auto hide__scroll__bar mb-20"
+    >
       {messages?.empty && (
         <>
           <p className="mt-10 text-center text-white">

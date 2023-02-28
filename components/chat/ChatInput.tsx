@@ -40,13 +40,13 @@ const ChatInput = ({ chatId }: Props) => {
     let notification: string;
 
     try {
-      notification = toast.loading("ChatGPT is gathering resources...");
+      notification = toast.loading("Clone is asking ChatGPT");
 
       await addMessage(session?.user?.email!, chatId, userMessage);
 
       setPrompt("");
       /*
-    //   ASSUMING WE WERE USING THE ASK QUSTION API ROUTTE
+    //   ASSUMING WE WERE USING THE ASK QUSTION API ROUTTE. we didnt use the api because vercel edge function kept timing out at 10secs
       const response = await fetch("/api/askQuestion", {
         method: "POST",
         headers: {
@@ -76,7 +76,7 @@ const ChatInput = ({ chatId }: Props) => {
 
       await addMessage(session?.user?.email!, chatId, gptMessage);
 
-      toast.success("ChatGPT just responded", {
+      toast.success("ChatGPT just replied clone", {
         id: notification!,
       });
     } catch (error) {

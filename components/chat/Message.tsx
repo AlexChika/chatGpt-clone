@@ -10,6 +10,7 @@ type Props = {
 const Message = ({ message, last }: Props) => {
   const isChatGpt = message.user.avatar === "ChatGptIcon";
 
+  const textBoxRef = useRef<null | HTMLDivElement>(null);
   const [_message, setMessage] = useState("");
 
   useEffect(() => {
@@ -35,8 +36,22 @@ const Message = ({ message, last }: Props) => {
     typeWriter();
   }, [last]);
 
+  useEffect(() => {
+    if (!last) return;
+    if (textBoxRef.current) {
+      textBoxRef.current.scrollIntoView({
+        behavior: "smooth",
+        inline: "nearest",
+        block: "end",
+      });
+    }
+  }, [_message, last]);
+
   return (
-    <div className={`py-5 text-white ${isChatGpt && "bg-[#434654]"}`}>
+    <div
+      ref={textBoxRef}
+      className={`py-7 text-white ${isChatGpt && "bg-[#434654]"}`}
+    >
       <div className="flex px-5 sm:px-10 space-x-5 max-w-[700px] mx-auto">
         {isChatGpt ? (
           <>
