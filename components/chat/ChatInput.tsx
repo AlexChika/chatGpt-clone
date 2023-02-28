@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { PaperAirplaneIcon } from "@heroicons/react/24/solid";
 import { serverTimestamp } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import { addMessage } from "../../lib/firebase";
 import toast from "react-hot-toast";
 import query from "../../lib/api/query";
@@ -19,6 +19,7 @@ const ChatInput = ({ chatId }: Props) => {
   const { data: model, mutate: setModel } = useSWR("model", {
     fallbackData: "text-davinci-003",
   });
+  const formInputRef = useRef<null | HTMLDivElement>(null);
 
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
@@ -86,8 +87,21 @@ const ChatInput = ({ chatId }: Props) => {
     }
   }
 
+  useEffect(() => {
+    if (formInputRef.current) {
+      formInputRef.current.scrollIntoView({
+        behavior: "smooth",
+        inline: "nearest",
+        block: "end",
+      });
+    }
+  }, [formInputRef.current]);
+
   return (
-    <div className="relative text-gray-400 text-sm py-5 flex items-center justify-center h-20">
+    <div
+      ref={formInputRef}
+      className="relative text-gray-400 text-sm py-5 flex items-center justify-center h-20"
+    >
       <form
         onSubmit={sendMessage}
         className="bg-gray-700/50 border border-gray-700/50 px-5 py-2 space-x-5 flex rounded w-[95%] sm:w-[80%] min-w-[300px] mx-auto z-50 absolute "
