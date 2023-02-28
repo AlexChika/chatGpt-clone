@@ -5,33 +5,38 @@ import { ChatGptIcon } from "../../lib/icons";
 const Message = ({ message }: { message: DocumentData }) => {
   const isChatGpt = message.user.avatar === "ChatGptIcon";
 
-  console.log(message.text.split("\n").length);
-  console.log(message.text);
+  console.log(message.text.split("\n"));
 
   return (
     <div className={`py-5 text-white ${isChatGpt && "bg-[#434654]"}`}>
-      <div className="flex px-5 sm:px-10 space-x-5 max-w-2xl mx-auto">
+      <div className="flex px-5 sm:px-10 space-x-5 max-w-[700px] mx-auto">
         {isChatGpt ? (
-          <span className="block min-w-8 min-h-8">
-            <ChatGptIcon class="h-8 w-8" />
-          </span>
+          <>
+            <span className="block min-w-8 min-h-8">
+              <ChatGptIcon class="h-8 w-8" />
+            </span>
+          </>
         ) : (
-          <img
-            className="h-8 w-8"
-            src={message.user.avatar}
-            alt={message.user.name + "'s" + " avatar"}
-          />
+          <>
+            <img
+              className="h-8 w-8"
+              src={message.user.avatar}
+              alt={message.user.name + "'s" + " avatar"}
+            />
+          </>
         )}
 
-        {isChatGpt ? (
-          message.text
-            .split("\n")
-            .map((text: string) => (
-              <p className="pt-1 text-sm message">{text}</p>
-            ))
-        ) : (
-          <p className="pt-1 text-sm message">{message.text}</p>
-        )}
+        <span>
+          {message.text.split("\n").map((text: string, index: number) =>
+            text ? (
+              <p key={index} className="pb-3 text-sm message">
+                {text}
+              </p>
+            ) : (
+              <></>
+            )
+          )}
+        </span>
       </div>
     </div>
   );

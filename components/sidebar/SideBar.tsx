@@ -17,7 +17,7 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
 
   return (
     <nav
-      className={`fixed md:sticky top-0 bottom-0 left-0 bg-[#202123] max-w-[15rem] lg:max-w-xs h-screen overflow-y-auto min-w-[15rem] lg:w-full p-2 flex flex-col transition-transform duration-200 ease-linear z-10 md:translate-x-0 ${
+      className={`fixed md:sticky top-0 bottom-0 left-0 bg-[#202123] max-w-[15rem] lg:max-w-[300px] h-screen overflow-y-auto min-w-[15rem] lg:w-full p-2 flex flex-col transition-transform duration-200 ease-linear z-10 md:translate-x-0 ${
         showModal ? "translate-x-0" : "-translate-x-full"
       }`}
     >

@@ -20,8 +20,6 @@ const ChatInput = ({ chatId }: Props) => {
     fallbackData: "text-davinci-003",
   });
 
-  //   const model = "text-davinci-003";
-
   async function sendMessage(e: FormEvent) {
     e.preventDefault();
     const input = prompt.trim();
@@ -89,8 +87,11 @@ const ChatInput = ({ chatId }: Props) => {
   }
 
   return (
-    <div className="bg-gray-700/50 text-gray-400 text-sm">
-      <form onSubmit={sendMessage} className="p-5 space-x-5 flex">
+    <div className="absolute bottom-0 left-0 right-0 text-gray-400 text-sm py-5 flex items-center justify-center h-28">
+      <form
+        onSubmit={sendMessage}
+        className="bg-gray-700/50 border border-gray-700/50 px-5 py-2 space-x-5 flex rounded w-[80%] min-w-[300px] mx-auto z-50 absolute "
+      >
         <input
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
@@ -108,7 +109,7 @@ const ChatInput = ({ chatId }: Props) => {
         </button>
       </form>
 
-      <div></div>
+      <div className="absolute h-20 bottom-0 left-0 right-0 bg-primary box_shadow"></div>
     </div>
   );
 };

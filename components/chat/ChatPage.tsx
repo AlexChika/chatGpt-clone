@@ -20,7 +20,7 @@ const ChatPage = ({ chatId }: Props) => {
   );
 
   return (
-    <div className="flex-1 overflow-y-auto hide__scroll__bar">
+    <div className="flex-1 overflow-y-auto hide__scroll__bar pb-32">
       {messages?.empty && (
         <>
           <p className="mt-10 text-center text-white">

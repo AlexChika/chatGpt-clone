@@ -8,7 +8,7 @@ type Props = {
 };
 const Chat = ({ params: { id } }: Props) => {
   return (
-    <div className="h-screen flex flex-col overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden relative">
       <ChatPage chatId={id} />
       <ChatInput chatId={id} />
     </div>

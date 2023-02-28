@@ -21,9 +21,15 @@
     @apply rounded-lg px-5 py-2 sm:py-3 text-sm flex items-center justify-center space-x-2 hover:bg-gray-700/70 cursor-pointer text-gray-300 transition-all duration-200 ease-out;
   }
 
+  .box_shadow {
+    -webkit-box-shadow: 4px -28px 48px 15px rgba(52, 53, 65, 0.8);
+    -moz-box-shadow: 4px -28px 48px 15px rgba(52, 53, 65, 0.8);
+    box-shadow: 4px -28px 48px 15px rgba(52, 53, 65, 0.8);
+  }
+
   .message {
-    line-height: 45px;
-    letter-spacing: 0.09rem;
+    line-height: 50px;
+    letter-spacing: 0.08rem;
   }
 
   .hide__scroll__bar::-webkit-scrollbar {
