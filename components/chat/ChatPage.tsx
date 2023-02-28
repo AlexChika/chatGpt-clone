@@ -1,6 +1,5 @@
 "use client";
 
-import SetHeight from "../../lib/hooks/setHeight";
 import { ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import { orderBy, query } from "firebase/firestore";
 import { useSession } from "next-auth/react";
@@ -40,7 +39,6 @@ const ChatPage = ({ chatId }: Props) => {
     return isNew;
   }
 
-  SetHeight(chatPageRef);
   useEffect(() => {
     if (chatPageRef.current) {
       chatPageRef.current.scrollTo(0, Number(chatPageRef.current.scrollHeight));
