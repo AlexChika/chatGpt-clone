@@ -127,5 +127,3 @@ const ChatInput = ({ chatId }: Props) => {
 };
 
 export default ChatInput;
-
-// <div className="absolute h-20 bottom-0 left-0 right-0 bg-primary box_shadow"></div>;
