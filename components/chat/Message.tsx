@@ -72,7 +72,7 @@ const Message = ({ message, last, chatRef }: Props) => {
           <span>
             {message.text.split("\n").map((text: string, index: number) =>
               text ? (
-                <p key={index} className="pb-3 text-sm message">
+                <p key={index} className="pb-3 text-sm message break-words">
                   {text}
                 </p>
               ) : (
@@ -86,7 +86,7 @@ const Message = ({ message, last, chatRef }: Props) => {
           <span>
             {_message.split("\n").map((text: string, index: number) =>
               text ? (
-                <p key={index} className="pb-3 text-sm message">
+                <p key={index} className="pb-3 text-sm message break-words">
                   {text}
 
                   {_message.split("\n").length === index + 1 && (

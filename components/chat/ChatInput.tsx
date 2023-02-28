@@ -100,7 +100,7 @@ const ChatInput = ({ chatId }: Props) => {
   return (
     <div
       ref={formInputRef}
-      className="sticky bottom-0 right-0 left-0 text-gray-400 text-sm py-5 flex items-center justify-center h-20"
+      className="fixed bottom-0 right-0 left-0 text-gray-400 text-sm py-5 flex items-center justify-center h-20"
     >
       <form
         onSubmit={sendMessage}
