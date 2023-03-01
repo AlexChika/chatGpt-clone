@@ -104,7 +104,7 @@ const ChatInput = ({ chatId }: Props) => {
     >
       <form
         onSubmit={sendMessage}
-        className="bg-gray-700/50 border border-gray-700/50 px-5 py-2 space-x-5 flex rounded w-[95%] sm:w-[80%] mx-auto z-50 absolute "
+        className="bg-gray-700/50 border border-gray-700/50 px-5 py-2 space-x-5 flex rounded w-[95%] sm:w-[80%] mx-auto z-50 absolute"
       >
         <input
           value={prompt}

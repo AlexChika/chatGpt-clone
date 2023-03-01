@@ -20,8 +20,12 @@ const ModelSelection = () => {
         isSearchable={true}
         isLoading={true}
         onChange={(e) => setModel(e.value)}
-        classNames={{
-          control: (state) => "bg-[#434654] border-[#434654]",
+        styles={{
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            borderColor: "#434654",
+            background: "#434654",
+          }),
         }}
       />
     </div>
