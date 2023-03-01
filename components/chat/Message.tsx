@@ -51,13 +51,11 @@ const Message = ({ message, last, chatRef }: Props) => {
       ref={textBoxRef}
       className={`py-7 text-white ${isChatGpt && "bg-[#434654]"}`}
     >
-      <div className="flex px-5 sm:px-10 space-x-5 max-w-[700px] mx-auto">
+      <div className="flex px-3 sm:px-10 space-x-5 max-w-[700px] mx-auto">
         {isChatGpt ? (
-          <>
-            <span className="block min-w-8 min-h-8">
-              <ChatGptIcon class="h-8 w-8" />
-            </span>
-          </>
+          <span className="">
+            <ChatGptIcon class="h-8 w-8" />
+          </span>
         ) : (
           <>
             <img
@@ -69,24 +67,24 @@ const Message = ({ message, last, chatRef }: Props) => {
         )}
 
         {!last && (
-          <span>
+          <div className="overflow-hidden">
             {message.text.split("\n").map((text: string, index: number) =>
               text ? (
-                <p key={index} className="pb-3 text-sm message break-words">
+                <p key={index} className="pb-3 text-sm message h-auto">
                   {text}
                 </p>
               ) : (
                 <></>
               )
             )}
-          </span>
+          </div>
         )}
 
         {last && (
-          <span>
+          <div className="overflow-hidden">
             {_message.split("\n").map((text: string, index: number) =>
               text ? (
-                <p key={index} className="pb-3 text-sm message break-words">
+                <p key={index} className="pb-3 text-sm message">
                   {text}
 
                   {_message.split("\n").length === index + 1 && (
@@ -97,7 +95,7 @@ const Message = ({ message, last, chatRef }: Props) => {
                 <></>
               )
             )}
-          </span>
+          </div>
         )}
       </div>
     </div>

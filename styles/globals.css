@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -15,6 +21,12 @@
 
   .red {
     border: 2px solid red;
+  }
+  .green {
+    border: 2px solid green;
+  }
+  .blue {
+    border: 2px solid blue;
   }
 }
 
@@ -36,6 +48,10 @@
   .message {
     line-height: 50px;
     letter-spacing: 0.08rem;
+    word-wrap: break-word;
+    /* word-break: break-all; */
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .hide__scroll__bar::-webkit-scrollbar {

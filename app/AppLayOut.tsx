@@ -9,7 +9,7 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex bg-primary mx-auto max-w-screen-2xl">
+    <div className="flex bg-primary mx-auto max-w-screen-2xl overflow-hidden">
       <SideBar showModal={showModal} />
 
       <main
@@ -17,7 +17,7 @@ const AppLayOut = ({ children }: { children: React.ReactNode }) => {
           if (e.target?.dataset?.role === "nav_button") return;
           setShowModal(false);
         }}
-        className="relative flex-1"
+        className="relative w-full"
       >
         <Toaster position="top-right" />
 
