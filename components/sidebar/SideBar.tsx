@@ -46,12 +46,18 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
       </div>
 
       {session && (
-        <img
+        <div
           onClick={() => signOut()}
-          className="min-h-12 h-12 w-12 rounded-full cursor-pointer mx-auto mb-2 hover:opacity-50"
-          src={session.user?.image!}
-          alt={`${session.user?.name!}'s profile picture`}
-        />
+          className="flex space-x-3 items-center flex-col justify-center text-white cursor-pointer hover:opacity-50"
+        >
+          <p>Log out</p>
+
+          <img
+            className="min-h-12 h-12 w-12 rounded-full cursor-pointer mx-auto mb-2"
+            src={session.user?.image!}
+            alt={`${session.user?.name!}'s profile picture`}
+          />
+        </div>
       )}
     </nav>
   );

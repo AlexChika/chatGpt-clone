@@ -17,7 +17,23 @@ const Message = ({ message, last, chatRef }: Props) => {
   useEffect(() => {
     if (!last) return;
 
-    let text = message.text;
+    // let text = message.text;
+    let text = message.text.split(" ");
+
+    // function typeWriter() {
+    //   let i = 0;
+    //   let message = _message;
+
+    //   function typing() {
+    //     if (i < text.length) {
+    //       setMessage((message += text.charAt(i)));
+    //       i++;
+    //       setTimeout(typing, 100);
+    //     }
+    //   }
+
+    //   typing();
+    // }
 
     function typeWriter() {
       let i = 0;
@@ -25,9 +41,9 @@ const Message = ({ message, last, chatRef }: Props) => {
 
       function typing() {
         if (i < text.length) {
-          setMessage((message += text.charAt(i)));
+          setMessage((message += text[i] += " "));
           i++;
-          setTimeout(typing, 100);
+          setTimeout(typing, 120);
         }
       }
 
