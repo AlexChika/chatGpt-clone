@@ -56,7 +56,7 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
             alt={`${session.user?.name!}'s profile picture`}
           />
 
-          <p className="text-lg font-bold">Log Out</p>
+          <p className="text-lg font-bold text-gray-500">Log Out</p>
         </div>
       )}
     </nav>
