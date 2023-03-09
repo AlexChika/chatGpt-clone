@@ -52,7 +52,10 @@ const SideBar = ({ showModal }: { showModal: boolean }) => {
         >
           <img
             className="min-h-6 h-6 w-6 rounded-full cursor-pointer"
-            src={session.user?.image!}
+            src={
+              session.user?.image! ||
+              `https://ui-avatars.com/api/?name=${session.user?.name}`
+            }
             alt={`${session.user?.name!}'s profile picture`}
           />
 
