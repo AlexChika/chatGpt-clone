@@ -4,12 +4,12 @@ import { ChatGptIcon } from "../../lib/icons";
 
 const LoginPage = () => {
   return (
-    <div className="bg-[#11a37f] h-screen flex flex-col items-center justify-center text-center ">
+    <div className="bg-primary h-screen flex flex-col items-center justify-center text-center ">
       <ChatGptIcon class="h-24 w-24" />
 
       <button
         onClick={() => signIn(`google`)}
-        className="text-white font-bold text-3xl animate-pulse"
+        className="bg-neutral-600 rounded text-white font-bold text-xl animate-bounce p-3 mt-10 hover:bg-[#11a37f] transition-colors duration-150 active:bg-neutral-800"
       >
         Sign in to use ChatGPT
       </button>
@@ -18,3 +18,5 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+//  bg-[#11a37f]
