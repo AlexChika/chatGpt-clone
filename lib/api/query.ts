@@ -14,7 +14,9 @@ async function query(prompt: string, model: string) {
     .then((res) => res.data.choices[0].text)
     .catch((err) => {
       console.log(err.message, "at query");
-      return `ChatGpt is having trouble finding your answers Error: ${err.message}`;
+      return `Oooops!!! Error 429. Billing usage exceeded.
+      We are very sorry! Our Open ai subscription plan expired. Since this is a demo app... We can't really pay for this services.
+      However, we can integrate OpenAi's Chat models into your business and ideas. Contact us @ https://alex.devarise.tech`;
     });
 
   return res;
